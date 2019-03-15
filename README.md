@@ -1,2 +1,2 @@
 # FourOscModel
-This repository will eventually contain code used for the four-oscillator model of interpersonal synchronization.
+This repository contains code used for the four-oscillator model of interpersonal synchronization strategies.
