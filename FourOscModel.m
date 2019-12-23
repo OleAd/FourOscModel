@@ -31,14 +31,14 @@
 N=4;                                % Four oscillators 
 D=zeros(N);                         % In the current approach there's no delays
 f_dist=ones(N,1);                   % This vector specify distribution of intrinsic frequencies, in this case all are equal
-dt=25e-3;                           % Integration step
-sampling=1;                         % Downsampling
+dt=0.01;                           % Integration step
+sampling=10;                         % Downsampling
 k=1;                                % Coupling, global K. Technically, this is not in use anymore. 
-t_max=20;                           % Time of simulatiom
+t_max=10;                           % Time of simulatiom
 frequency_mean=2;                   % Mean of oscillator frequencies
 f_std=.2;                           % Std of oscillator frequencies. Not sure what we should argue here.
-msNoise=20;                         % Noise, in ms.
-currNoise=msNoise*(2*pi/500);       % Noise
+msNoise=35;                         % Noise, in ms.
+currNoise=msNoise*(2*pi/500);       % Noise.
 
 
 %
@@ -52,10 +52,10 @@ collLags=[];
 numSims=1000; % Define how many simulations
 
 % Define the connectivity matrix
-x1=.2;
-x2=.2;
-y1=.8;
-y2=.8;
+x1=0.17;
+x2=0.41;
+y1=0.55;
+y2=0.55;
 
 C=[0 x1 y1 0; x1 0 0 0; 0 0 0 x2; 0 y2 x2 0];   % Connectivity matrix
 
@@ -70,6 +70,8 @@ for n=1:numSims
     [P1ITI, P2ITI, onsetOPp1, onsetOPp2]=interpolateZeroCrossing(Phases, dt, sampling, 4);
   
     % Calculate and collect cross-correlations
+    
+%     GET CROSSCORR at www.oaheggli.no/crosscorr.m
     thisLags=crosscorr(P1ITI, P2ITI, 1);
     collLags=[collLags;thisLags];
     
